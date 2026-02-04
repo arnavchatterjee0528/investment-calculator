@@ -97,7 +97,7 @@ Where:
 
 ## 🌐 Live Demo
 
-(Add GitHub Pages link here after deployment)
+https://arnavchatterjee0528.github.io/investment-calculator/
 
 ---
 
