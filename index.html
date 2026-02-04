@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Investment Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="page-header">
+    <h1>Investment Calculator</h1>
+    <p>
+      Plan your financial future with our comprehensive investment calculator.
+      Calculate returns for SIP, Step-Up SIP, and Lumpsum investments.
+    </p>
+  </header>
+
+  <!-- Mode Tabs -->
+  <section class="mode-tabs">
+    <button class="tab active">📈 SIP</button>
+    <button class="tab">⚡ Step-Up SIP</button>
+    <button class="tab">💼 Lumpsum</button>
+  </section>
+
+  <!-- Main Calculator -->
+  <main class="calculator-container">
+
+    <!-- LEFT: INPUTS -->
+    <section class="calculator-card">
+      <h2 id="calculatorTitle">SIP Calculator</h2>
+      <p id="calculatorDescription">
+        Invest a fixed amount regularly and watch your wealth grow through the
+        power of compounding.
+      </p>
+
+      <!-- Investment Amount -->
+      <div class="input-group">
+        <div class="input-header">
+          <label id="investmentLabel">Monthly Investment</label>
+          <div class="input-row">
+            <span>₹</span>
+            <input type="number" id="monthlyAmount" value="5000" min="0" step="500" />
+          </div>
+        </div>
+
+        <input type="range" id="monthlyAmountRange" min="0" max="100000" step="500" value="5000" />
+        <div class="range-labels">
+          <span>₹0</span>
+          <span>₹1,00,000</span>
+        </div>
+      </div>
+
+      <!-- Annual Step-Up Percentage -->
+      <div class="input-group stepup-only" style="display:none;">
+        <div class="input-header">
+          <label>Annual Step-Up (%)</label>
+          <input type="number" id="stepUpPercent" value="10" min="0" max="50" step="0.5" />
+        </div>
+
+        <input type="range" id="stepUpPercentRange" min="0" max="50" step="0.5" value="10" />
+        <div class="range-labels">
+          <span>0%</span>
+          <span>50%</span>
+        </div>
+      </div>
+
+      <!-- Expected Annual Return -->
+      <div class="input-group">
+        <div class="input-header">
+          <label>Expected Annual Return (%)</label>
+          <input type="number" id="annualReturn" value="12" min="-50" max="100" step="0.5" />
+        </div>
+
+        <input type="range" id="annualReturnRange" min="-50" max="100" step="0.5" value="12" />
+        <div class="range-labels">
+          <span>-50%</span>
+          <span>100%</span>
+        </div>
+      </div>
+
+      <!-- Investment Duration -->
+      <div class="input-group">
+        <div class="input-header">
+          <label>Investment Duration</label>
+          <div class="input-row">
+            <input type="number" id="durationValue" value="6" min="1" step="1" />
+            <select id="durationMode">
+              <option value="years" selected>years</option>
+              <option value="months">months</option>
+            </select>
+          </div>
+        </div>
+
+        <input type="range" id="durationRange" min="1" max="40" value="6" />
+        <div class="range-labels">
+          <span id="durationMin">1 year</span>
+          <span id="durationMax">40 years</span>
+        </div>
+      </div>
+
+      <!-- Info Box -->
+      <div class="sip-info-box">
+        <strong id="infoTitle">ℹ️ What is SIP?</strong>
+        <p id="infoText">
+          A Systematic Investment Plan allows you to invest a fixed amount regularly.
+          Your returns compound over time, meaning you earn returns on your returns,
+          accelerating wealth creation.
+        </p>
+      </div>
+    </section>
+
+    <!-- RIGHT: SUMMARY -->
+    <section class="summary-card">
+      <h2>Investment Summary</h2>
+      <p>Your potential returns over the selected duration</p>
+
+      <div class="summary-box invested">
+        <h4>Total Invested</h4>
+        <h3 id="totalInvested">₹0</h3>
+      </div>
+
+      <div class="summary-box returns">
+        <h4>Estimated Returns</h4>
+        <h3 id="estimatedReturns">₹0</h3>
+        <span id="returnsPercent">0% gain</span>
+      </div>
+
+      <div class="summary-box total">
+        <h4>Total Maturity Value</h4>
+        <h3 id="totalValue">₹0</h3>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LINE CHART -->
+  <section class="charts-section">
+    <div class="chart-card">
+      <h3>Wealth Growth Over Time</h3>
+      <p>See how your investment grows year by year through compounding.</p>
+      <canvas id="lineChart"></canvas>
+      <div class="insight-box">
+        <strong>Key Insight:</strong>
+        The gap between invested amount and total value widens over time due to compounding.
+      </div>
+    </div>
+  </section>
+
+  <!-- PIE CHART -->
+  <section class="charts-section">
+    <div class="chart-card">
+      <h3>Investment Breakdown</h3>
+      <p>How much you invested vs. how much you earned</p>
+
+      <div class="pie-layout">
+        <div class="pie-wrapper">
+          <span class="pie-label invested-label" id="investedPercent">Total Invested: 0%</span>
+          <canvas id="pieChart"></canvas>
+          <span class="pie-label returns-label" id="returnsPercentPie">Estimated Returns: 0%</span>
+        </div>
+
+        <div class="pie-stats">
+          <div class="stat invested">
+            <span><span class="dot blue"></span>Total Invested</span>
+            <strong id="pieInvestedValue">₹0</strong>
+          </div>
+          <div class="stat returns">
+            <span><span class="dot green"></span>Estimated Returns</span>
+            <strong id="pieReturnsValue">₹0</strong>
+          </div>
+          <div class="stat total">
+            <span>Total Value</span>
+            <strong id="pieTotalValue">₹0</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ YEAR-BY-YEAR ANALYSIS (RESTORED) -->
+  <section class="charts-section">
+    <div class="chart-card dropdown-card open">
+      <div class="dropdown-header">
+        <div>
+          <h3>Year-by-Year Analysis</h3>
+          <p>Annual investment contributions and returns generated</p>
+        </div>
+        <span class="chevron">⌄</span>
+      </div>
+
+      <div class="dropdown-content">
+        <canvas id="barChart"></canvas>
+
+        <div class="info-box green">
+          <strong>Compounding Effect:</strong>
+          Returns grow faster over time because gains themselves start earning returns.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ UNDERSTANDING YOUR INVESTMENT (RESTORED) -->
+  <section class="charts-section">
+    <div class="chart-card dropdown-card">
+      <div class="dropdown-header">
+        <div>
+          <h3>Understanding Your Investment</h3>
+          <p>Learn more about SIP and compounding</p>
+        </div>
+        <span class="chevron">⌄</span>
+      </div>
+
+      <div class="dropdown-content">
+        <div class="info-box blue">
+          <strong id="understandingTitle">What is SIP?</strong>
+          <p id="understandingText">
+            A Systematic Investment Plan allows you to invest a fixed amount regularly
+            and build wealth through disciplined investing.
+          </p>
+        </div>
+
+        <div class="info-box purple">
+          <strong>How Compounding Works</strong>
+          Compounding means earning returns not just on your principal, but also on
+          previously accumulated gains.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
