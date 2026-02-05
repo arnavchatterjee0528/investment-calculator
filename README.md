@@ -1,113 +1,76 @@
-# Investment Calculator
+# Investment Calculator (SIP · Step-Up SIP · Lumpsum)
 
-A web-based investment calculator that helps users estimate returns for:
-- SIP (Systematic Investment Plan)
-- Step-Up SIP
-- Lumpsum Investment
-
-Built using **HTML, CSS, and JavaScript**.
+A modern, interactive investment calculator that helps users estimate returns for **SIP**, **Step-Up SIP**, and **Lumpsum** investments using the power of compounding.  
+The project focuses on clarity, real-time feedback, and visual understanding of long-term investing.
 
 ---
 
-## 🚀 Features Implemented
+## 🔗 Live Demo
 
-- SIP calculator with monthly investments
-- Step-Up SIP with annual increment percentage
-- Lumpsum investment calculator
-- Dynamic charts (Line, Pie, Bar) using Chart.js
-- Year-by-year investment analysis
-- Toggle between Years and Months
-- Responsive UI
-- Clean and intuitive user interface
+👉 https://arnavchatterjee0528.github.io/investment-calculator/
 
 ---
 
-## 📌 Assumptions Made
+## 📂 Source Code Repository
 
-- Annual returns are compounded monthly for SIP and Step-Up SIP
-- Lumpsum returns are compounded annually
-- Step-Up percentage is applied once every year
-- Taxes, exit load, and inflation are not considered
-- Returns are indicative and for educational purposes only
+GitHub:  
+👉 https://github.com/your-username/repository-name
 
 ---
 
-## 🧮 SIP Calculation Logic
+## ✨ Features Implemented
 
-For SIP:
+### 📈 SIP Calculator
+- Monthly investment input (number + slider synced)
+- Expected annual return (%)
+- Investment duration (years or months)
+- Real-time calculation of:
+  - Total Invested
+  - Estimated Returns
+  - Total Maturity Value
+- Visual charts:
+  - Line chart for wealth growth
+  - Pie chart for invested vs returns
+  - Year-by-year bar chart analysis
 
-- A fixed amount is invested every month
-- Monthly return rate = Annual Return / 12
-- Each month:
-  - Previous total grows by monthly return
-  - New monthly investment is added
+### ⚡ Step-Up SIP Calculator
+- Includes all SIP features
+- Additional annual step-up percentage input
+- Monthly investment increases automatically every year
+- Demonstrates how increasing investments boosts long-term wealth
+- Separate yearly investment and return breakdown
 
-Formula conceptually:
-# Investment Calculator
+### 💼 Lumpsum Calculator
+- One-time investment amount
+- Expected annual return
+- Investment duration (years or months)
+- Compound growth calculation for a single upfront investment
+- All charts update according to lumpsum logic
 
-A web-based investment calculator that helps users estimate returns for:
-- SIP (Systematic Investment Plan)
-- Step-Up SIP
-- Lumpsum Investment
-
-Built using **HTML, CSS, and JavaScript**.
-
----
-
-## 🚀 Features Implemented
-
-- SIP calculator with monthly investments
-- Step-Up SIP with annual increment percentage
-- Lumpsum investment calculator
-- Dynamic charts (Line, Pie, Bar) using Chart.js
-- Year-by-year investment analysis
-- Toggle between Years and Months
-- Responsive UI
-- Clean and intuitive user interface
-
----
-
-## 📌 Assumptions Made
-
-- Annual returns are compounded monthly for SIP and Step-Up SIP
-- Lumpsum returns are compounded annually
-- Step-Up percentage is applied once every year
-- Taxes, exit load, and inflation are not considered
-- Returns are indicative and for educational purposes only
+### 📊 Charts & UI
+- Built using **Chart.js**
+- Modern, responsive UI
+- Interactive dropdown sections
+- Instant updates on every input change
 
 ---
 
-## 🧮 SIP Calculation Logic
+## 🧠 Assumptions Made
 
-For SIP:
-
-- A fixed amount is invested every month
-- Monthly return rate = Annual Return / 12
-- Each month:
-  - Previous total grows by monthly return
-  - New monthly investment is added
-
-Formula conceptually:
-Total Value = Previous Value × (1 + r) + Monthly Investment
-
-Where:
-- `r` = monthly return rate
+- Annual returns remain **constant** throughout the investment period
+- Compounding frequency:
+  - Monthly for SIP and Step-Up SIP
+  - Annually for Lumpsum investments
+- Taxes, inflation, exit loads, and fund expense ratios are **not considered**
+- Step-Up SIP increases investment **once per year**
+- Results are estimates and **not guaranteed returns**
 
 ---
 
-## 🌐 Live Demo
+## 🧮 SIP Calculation Logic Explained
 
-https://arnavchatterjee0528.github.io/investment-calculator/
+### SIP Logic
 
----
+Each monthly investment is added and compounded until the end of the investment period.
 
-## 📂 Tech Stack
-
-- HTML
-- CSS
-- JavaScript
-- Chart.js
-
-
-
-
+Monthly rate:
